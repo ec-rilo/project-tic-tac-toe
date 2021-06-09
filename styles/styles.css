@@ -83,7 +83,7 @@ button:hover {
     cursor: pointer
 }
 
-.row {
+.rows {
     display: flex;
     flex-direction: row;
     justify-content: center;

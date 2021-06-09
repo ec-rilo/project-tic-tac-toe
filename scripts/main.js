@@ -1,19 +1,21 @@
 'use strict';
 
 // Populates program with gameboard.
-const gameBoard = (function () {
+const gameboard = (function () {
     'use strict';
 
     let tileContainer = 'undefined';
+    let gameboardArr = ['x', 'x', 'x', 'o', 'o', 'o'];
 
     let app = {
         initialize: function () {
             
             tileContainer = document.querySelector('.tile-container');
-            const _numOfTiles = 3;
-            for (let i = 0; i < _numOfTiles; ++i) {
+            const _numOfRows = 3;
+            for (let i = 0; i < _numOfRows; ++i) {
                 let _row = document.createElement('div');
-                _row.setAttribute('class', 'row');
+                _row.classList.add('rows');
+                _row.classList.add(`row-${i + 1}`);
 
                 for (let j = 0; j < 3; ++j) {
                     let _tile = document.createElement('div');
@@ -23,8 +25,16 @@ const gameBoard = (function () {
 
                 tileContainer.appendChild(_row);
             }
-        },
+
+            const _tiles = Array.from(document.querySelectorAll('.tiles'));
+            const _numOfTiles = _tiles.length;
+            for (let i = 0; i < _numOfTiles; ++i) {
+                _tiles[i].classList.add(`tile-${i + 1}`);
+            }
+        }
     };
 
     app.initialize();
 })();
+
+
