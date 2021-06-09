@@ -1,0 +1,78 @@
+:root {
+    --main-color: #162521;
+    --main-color-2: #25D083;
+    --main-color-3: #fc5185;
+    --main-font: 'Righteous';
+}
+
+body {
+    background-color: var(--main-color);
+    font-family: var(--main-font);
+}
+
+.main-container {
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--main-color);
+    border: 5px solid var(--main-color-2);
+    border-radius: 5px;
+    height: 500px;
+    width: 400px;
+    background-color: var(--main-color);
+}
+
+.heading-container {
+    position: relative;
+    border: 5px solid var(--main-color-2);
+    border-radius: 5px;
+    background-color: var(--main-color);
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 75%;
+    height: 80px;
+}
+
+.heading {
+    color: var(--main-color-2);
+    text-shadow: 3px 3px var(--main-color-3);
+    text-align: center;
+}
+
+.buttons-container {
+    display: flex;
+    position: relative;
+    top: 8%;
+    justify-content: space-evenly;
+}
+
+button {
+    background-color: var(--main-color-2);
+    min-width: 100px;
+    padding: 5px 10px 5px 10px;
+    font-family: var(--main-font);
+}
+
+.tile-container {
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+}
+
+.tiles {
+    width: 85px;
+    height: 85px;
+    background-color: var(--main-color-2);
+    margin: 2px;
+    opacity: .8;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
