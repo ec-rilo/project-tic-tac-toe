@@ -1,6 +1,7 @@
 'use strict';
 
-(function () {
+// Populates program with gameboard.
+const gameBoard = (function () {
     'use strict';
 
     let tileContainer = 'undefined';

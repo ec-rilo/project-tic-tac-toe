@@ -54,6 +54,17 @@ button {
     min-width: 100px;
     padding: 5px 10px 5px 10px;
     font-family: var(--main-font);
+    border-radius: 10px;
+    border: none;
+    opacity: .8;
+}
+
+button:active {
+    opacity: 1;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 .tile-container {
@@ -69,6 +80,7 @@ button {
     background-color: var(--main-color-2);
     margin: 2px;
     opacity: .8;
+    cursor: pointer
 }
 
 .row {
