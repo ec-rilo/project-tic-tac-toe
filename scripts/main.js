@@ -5,7 +5,7 @@ const gameboard = (function () {
     'use strict';
 
     let tileContainer = 'undefined';
-    let gameboardArr = ['x', 'x', 'x', 'o', 'o', 'o'];
+    let gameboardArr = ['x', 'x', 'x', 'o', 'o', 'o', 'x', 'x', 'x'];
 
     let app = {
         initialize: function () {
@@ -30,6 +30,10 @@ const gameboard = (function () {
             const _numOfTiles = _tiles.length;
             for (let i = 0; i < _numOfTiles; ++i) {
                 _tiles[i].classList.add(`tile-${i + 1}`);
+            }
+
+            for (let i = 0; i < _numOfTiles; ++i) {
+                _tiles[i].innerHTML = gameboardArr[i];
             }
         }
     };
