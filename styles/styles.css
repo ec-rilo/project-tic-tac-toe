@@ -10,7 +10,28 @@ body {
     font-family: var(--main-font);
 }
 
+.greeting {
+    position: absolute;
+    color: var(--main-color-2);
+    text-shadow: 3px 3px var(--main-color-3);
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+}
+
+.introStartBtn {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 50px;
+    font-size: 15px;
+}
+
 .main-container {
+    display: none;
     position: absolute;
     overflow: hidden;
     top: 50%;

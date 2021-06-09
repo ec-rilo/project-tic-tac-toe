@@ -1,5 +1,36 @@
 'use strict';
 
+const greeting = (function () {
+    const htmlBody = document.querySelector('body');
+
+    const _greeting = document.createElement('h1');
+    _greeting.classList.add('greeting');
+    _greeting.innerHTML = 'Project-Tic-Tac-Toe';
+    htmlBody.appendChild(_greeting);
+
+    const _startBtn = document.createElement('button');
+    _startBtn.setAttribute('type', 'button');
+    _startBtn.classList.add('introStartBtn');
+    _startBtn.innerHTML = 'Start';
+    htmlBody.appendChild(_startBtn);
+
+    
+
+    function startGame() {
+        const gameboard = document.querySelector('.main-container');
+        
+        _greeting.style.display = 'none';
+        _startBtn.style.display = 'none';
+        
+        gameboard.style.display = 'block';
+    }
+
+    _startBtn.addEventListener('click', () => startGame());
+
+
+
+})();
+
 // Populates program with gameboard.
 const gameboard = (function () {
     'use strict';
@@ -40,5 +71,4 @@ const gameboard = (function () {
 
     app.initialize();
 })();
-
 
