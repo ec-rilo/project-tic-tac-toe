@@ -1,6 +1,7 @@
 'use strict';
 
 const greeting = (function () {
+    'use strict';
     const htmlBody = document.querySelector('body');
 
     const _greeting = document.createElement('h1');
@@ -14,8 +15,6 @@ const greeting = (function () {
     _startBtn.innerHTML = 'Start';
     htmlBody.appendChild(_startBtn);
 
-    
-
     function startGame() {
         const gameboard = document.querySelector('.main-container');
         
@@ -26,9 +25,6 @@ const greeting = (function () {
     }
 
     _startBtn.addEventListener('click', () => startGame());
-
-
-
 })();
 
 // Populates program with gameboard.
@@ -36,7 +32,6 @@ const gameboard = (function () {
     'use strict';
 
     let tileContainer = 'undefined';
-    let gameboardArr = ['x', 'x', 'x', 'o', 'o', 'o', 'x', 'x', 'x'];
 
     let app = {
         initialize: function () {
@@ -62,13 +57,42 @@ const gameboard = (function () {
             for (let i = 0; i < _numOfTiles; ++i) {
                 _tiles[i].classList.add(`tile-${i + 1}`);
             }
-
-            for (let i = 0; i < _numOfTiles; ++i) {
-                _tiles[i].innerHTML = gameboardArr[i];
-            }
-        }
+        }, 
     };
 
     app.initialize();
+    
 })();
 
+const game = (function () {
+
+    let gameboardArr = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
+    let playCounter = 0;
+
+    let app = {
+
+        start: function () {
+            const tilesArr = Array.from(document.querySelectorAll('.tiles'));
+            tilesArr.forEach(tile => {
+                tile.addEventListener('click', () => {
+                    if (tile.innerHTML !== '') {
+                        return;
+                    }
+                    else if (playCounter % 2 === 0) {
+                        tile.innerHTML = gameboardArr[playCounter];
+                        ++playCounter;
+                        console.log(playCounter);
+                    }
+                    else {
+                        tile.innerHTML = gameboardArr[playCounter];
+                        ++playCounter;
+                        console.log(playCounter)
+                    }
+                });
+            });
+        }
+    }
+
+    app.start();
+
+})();
