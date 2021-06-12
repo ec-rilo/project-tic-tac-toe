@@ -1,8 +1,54 @@
 'use strict';
 
+const Player = (i) => {
+    const htmlBody = document.querySelector('body');
+
+    function openNewForm() {
+
+        let clicked = false;
+
+        let formContainer = document.createElement('form');
+        formContainer.classList.add('form-container');
+        formContainer.setAttribute('action', '#');
+        formContainer.setAttribute('autocomplete', 'off');
+
+        htmlBody.appendChild(formContainer);
+
+        let _textLabel = document.createElement('label');
+        _textLabel.classList.add('info-request');
+        _textLabel.setAttribute('for', `player-${i}`);
+        _textLabel.innerHTML = `Please enter player-${i}`;
+        formContainer.appendChild(_textLabel);
+
+        let _textContainer = document.createElement('div');
+        _textContainer.classList.add('text-container');
+        formContainer.appendChild(_textContainer);
+
+        let _textBox = document.createElement('input');
+        _textBox.setAttribute('type', 'text');
+        _textBox.setAttribute('required', '');
+        _textBox.setAttribute('id', `player-${i}`);
+        _textBox.setAttribute('placeholder', 'Name');
+        _textBox.classList.add('input-text-box');
+        _textContainer.appendChild(_textBox);
+
+        let submitBtn = document.createElement('button');
+        submitBtn.innerHTML = 'Submit';
+        submitBtn.setAttribute('type', 'submit');
+        submitBtn.classList.add('submit-btn');
+        formContainer.appendChild(submitBtn);
+        console.log(_textBox.value);
+    }
+
+        return {
+            openForm: openNewForm()
+        }
+}
+
 const greeting = (function () {
     'use strict';
     const htmlBody = document.querySelector('body');
+    const gameboard = document.querySelector('.main-container');
 
     const _greeting = document.createElement('h1');
     _greeting.classList.add('greeting');
@@ -11,20 +57,24 @@ const greeting = (function () {
 
     const _startBtn = document.createElement('button');
     _startBtn.setAttribute('type', 'button');
-    _startBtn.classList.add('introStartBtn');
+    _startBtn.classList.add('intro-start-btn');
     _startBtn.innerHTML = 'Start';
     htmlBody.appendChild(_startBtn);
 
     function startGame() {
-        const gameboard = document.querySelector('.main-container');
-        
-        _greeting.style.display = 'none';
-        _startBtn.style.display = 'none';
-        
+        _greeting.remove();
         gameboard.style.display = 'block';
     }
 
-    _startBtn.addEventListener('click', () => startGame());
+    function getPlayerInfo() {
+        _startBtn.remove();
+
+        const player1 = Player(1);
+        player1.openNewForm;
+    }
+
+
+    _startBtn.addEventListener('click', () => getPlayerInfo());
 })();
 
 // Populates program with gameboard.
