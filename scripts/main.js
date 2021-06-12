@@ -45,15 +45,15 @@ const Player = (i) => {
         }
 }
 
-const greeting = (function () {
+const intro = (function () {
     'use strict';
     const htmlBody = document.querySelector('body');
     const gameboard = document.querySelector('.main-container');
 
-    const _greeting = document.createElement('h1');
-    _greeting.classList.add('greeting');
-    _greeting.innerHTML = 'Project-Tic-Tac-Toe';
-    htmlBody.appendChild(_greeting);
+    const _banner = document.createElement('h1');
+    _banner.classList.add('banner');
+    _banner.innerHTML = 'Project-Tic-Tac-Toe';
+    htmlBody.appendChild(_banner);
 
     const _startBtn = document.createElement('button');
     _startBtn.setAttribute('type', 'button');
@@ -62,7 +62,7 @@ const greeting = (function () {
     htmlBody.appendChild(_startBtn);
 
     function startGame() {
-        _greeting.remove();
+        banner.remove();
         gameboard.style.display = 'block';
     }
 

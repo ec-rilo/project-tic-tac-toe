@@ -11,7 +11,7 @@ body {
     margin: 0;
 }
 
-.greeting {
+.banner {
     position: absolute;
     color: var(--main-color-2);
     text-shadow: 3px 3px var(--main-color-3);
@@ -201,7 +201,7 @@ button:hover {
 
 
 @media (max-width: 450px) {
-    .greeting {
+    .banner {
         position: absolute;
         color: var(--main-color-2);
         text-shadow: 3px 3px var(--main-color-3);
@@ -225,7 +225,7 @@ button:hover {
 }
 
 @media (orientation: landscape) and (max-width: 800px) {
-    .greeting {
+    .banner {
         top: 30%;
         font-size: 60px;
         text-align: center;
