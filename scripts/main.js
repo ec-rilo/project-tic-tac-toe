@@ -1,44 +1,62 @@
 'use strict';
 
-function getPlayerName(i) {
+const Player = (name, type) => {
+    const win = () => {
+        console.log(`Congradulations! ${name} wins!`)
+    }
+    return { name, type, win }
+};
 
-    let clicked = false;
-    let htmlBody = document.querySelector('body');
+const form = (i) => {
+    
+    const openForm = (i) => {
+        let htmlBody = document.querySelector('body');
 
-    let formContainer = document.createElement('form');
-    formContainer.classList.add('form-container');
-    formContainer.setAttribute('action', '#');
-    formContainer.setAttribute('autocomplete', 'off');
+        let formContainer = document.createElement('form');
+        formContainer.classList.add('form-container');
+        formContainer.setAttribute('action', '#');
+        formContainer.setAttribute('autocomplete', 'off');
 
-    htmlBody.appendChild(formContainer);
+        htmlBody.appendChild(formContainer);
 
-    let _textLabel = document.createElement('label');
-    _textLabel.classList.add('info-request');
-    _textLabel.setAttribute('for', `player-${i}`);
-    _textLabel.innerHTML = `Please enter player-${i}`;
-    formContainer.appendChild(_textLabel);
+        let _textLabel = document.createElement('label');
+        _textLabel.classList.add('info-request');
+        _textLabel.setAttribute('for', `player-${i}`);
+        _textLabel.innerHTML = `Please enter player-${i}`;
+        formContainer.appendChild(_textLabel);
 
-    let _textContainer = document.createElement('div');
-    _textContainer.classList.add('text-container');
-    formContainer.appendChild(_textContainer);
+        let _textContainer = document.createElement('div');
+        _textContainer.classList.add('text-container');
+        formContainer.appendChild(_textContainer);
 
-    let _textBox = document.createElement('input');
-    _textBox.setAttribute('type', 'text');
-    _textBox.setAttribute('required', '');
-    _textBox.setAttribute('id', `player-${i}`);
-    _textBox.setAttribute('placeholder', 'Name');
-    _textBox.classList.add('input-text-box');
-    _textContainer.appendChild(_textBox);
+        let _textBox = document.createElement('input');
+        _textBox.setAttribute('type', 'text');
+        _textBox.setAttribute('id', `player-${i}`);
+        _textBox.setAttribute('placeholder', 'Name');
+        _textBox.classList.add('input-text-box');
+        _textBox.setAttribute('required', '');
+        _textContainer.appendChild(_textBox);
 
-    let submitBtn = document.createElement('button');
-    submitBtn.innerHTML = 'Submit';
-    submitBtn.setAttribute('type', 'submit');
-    submitBtn.classList.add('submit-btn');
-    formContainer.appendChild(submitBtn);
+        let _submitBtn = document.createElement('button');
+        _submitBtn.innerHTML = 'Submit';
+        _submitBtn.setAttribute('type', 'submit');
+        _submitBtn.setAttribute('id', 'submit-btn');
+        _submitBtn.classList.add('submit-btn');
+        formContainer.appendChild(_submitBtn);
+    };
+
+    const closeForm = () => {
+        
+        let formContainer = document.querySelector('.form-container');
+        formContainer.remove();
+    };
+
+    return { openForm, closeForm };
 }
 
-const intro = (function () {
+const introContent = (function () {
     'use strict';
+    
     const htmlBody = document.querySelector('body');
     const gameboard = document.querySelector('.main-container');
 
@@ -47,26 +65,59 @@ const intro = (function () {
     _banner.innerHTML = 'Project-Tic-Tac-Toe';
     htmlBody.appendChild(_banner);
 
-    function getPlayerNames() {
-        _startBtn.remove();
-
-        const player1 = getPlayerName(1);
-
-    }
-
     const _startBtn = document.createElement('button');
     _startBtn.setAttribute('type', 'button');
     _startBtn.classList.add('intro-start-btn');
     _startBtn.innerHTML = 'Start';
     htmlBody.appendChild(_startBtn);
 
-    _startBtn.addEventListener('click', () => getPlayerNames());
+    let playerOne = {};
+    let playerTwo = {};
+
+    function getPlayerOne() {
+        let _formOne = form(1);
+            _formOne.openForm(1);
+
+        let formContainer = document.querySelector('.form-container');
+
+        formContainer.addEventListener('submit', () => {
+            let _name = document.getElementById(`player-1`).value;
+            playerOne = Player(_name, 'X');
+
+            _formOne.closeForm();
+            getPlayerTwo();
+        });
+    }
+
+    function getPlayerTwo() {
+        let _formTwo = form(2);
+            _formTwo.openForm(2);
+
+        let formContainer = document.querySelector('.form-container');
+        formContainer.addEventListener('submit', () => {
+            let _name = document.getElementById('player-2').value;
+            playerTwo = Player(_name, 'O');
+
+            _formTwo.closeForm();
+
+            startGame();
+        });
+    }
+
+    function getPlayers() {
+        _startBtn.remove();
+        getPlayerOne();
+    }
+
+    _startBtn.addEventListener('click', () => getPlayers());
 
 
     function startGame() {
-        banner.remove();
+        _banner.remove();
         gameboard.style.display = 'block';
     }
+
+    return { playerOne, playerTwo };
 
 })();
 
@@ -109,7 +160,7 @@ const gameboard = (function () {
 
 const game = (function () {
 
-    let gameboardArr = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
+    let gameboardArr = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
     let playCounter = 0;
 
     let app = {
@@ -124,13 +175,27 @@ const game = (function () {
                     else if (playCounter % 2 === 0) {
                         tile.innerHTML = gameboardArr[playCounter];
                         ++playCounter;
-                        console.log(playCounter);
                     }
                     else {
                         tile.innerHTML = gameboardArr[playCounter];
                         ++playCounter;
-                        console.log(playCounter)
                     }
+
+                    // Checks first row for a win
+                    const rowOneTiles = 3;
+                    for (let i = 0; i < rowOneTiles; ++i) {
+                        // Check if horizontal tiles are matching
+                        // Check if tiles 1-3 match
+                        let _tile = tilesArr[i];
+                        if (_tile.innerHTML === 'null') {
+                            return;
+                        }
+                        else if(_tile) {
+                            
+                        }
+                        
+                        // if (_tile.value)
+                    };
                 });
             });
         }
