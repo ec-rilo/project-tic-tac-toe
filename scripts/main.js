@@ -1,10 +1,21 @@
 'use strict';
 
 const Player = (name, type) => {
+    let _points = 0;
+
+    let pointWin = point => {
+        _points += point;
+    }
+
+    let pointLoss = point => {
+        _points -= point;
+    }
+
     const win = () => {
         console.log(`Congradulations! ${name} wins!`)
     }
-    return { name, type, win }
+
+    return { name, type, win, pointWin, pointLoss }
 };
 
 const form = (i) => {
@@ -71,10 +82,10 @@ const introContent = (function () {
     _startBtn.innerHTML = 'Start';
     htmlBody.appendChild(_startBtn);
 
-    let playerOne = {};
-    let playerTwo = {};
+    let _playerOne = {};
+    let _playerTwo = {};
 
-    function getPlayerOne() {
+    function setPlayerOne() {
         let _formOne = form(1);
             _formOne.openForm(1);
 
@@ -82,21 +93,21 @@ const introContent = (function () {
 
         formContainer.addEventListener('submit', () => {
             let _name = document.getElementById(`player-1`).value;
-            playerOne = Player(_name, 'X');
+            _playerOne = Player(_name, 'X');
 
             _formOne.closeForm();
-            getPlayerTwo();
+            setPlayerTwo();
         });
     }
 
-    function getPlayerTwo() {
+    function setPlayerTwo() {
         let _formTwo = form(2);
             _formTwo.openForm(2);
 
         let formContainer = document.querySelector('.form-container');
         formContainer.addEventListener('submit', () => {
             let _name = document.getElementById('player-2').value;
-            playerTwo = Player(_name, 'O');
+            _playerTwo = Player(_name, 'O');
 
             _formTwo.closeForm();
 
@@ -106,18 +117,21 @@ const introContent = (function () {
 
     function getPlayers() {
         _startBtn.remove();
-        getPlayerOne();
+        setPlayerOne();
     }
 
     _startBtn.addEventListener('click', () => getPlayers());
 
+    const getPlayerOne = () => _playerOne;
+
+    const getPlayerTwo = () => _playerTwo;
 
     function startGame() {
         _banner.remove();
         gameboard.style.display = 'block';
     }
 
-    return { playerOne, playerTwo };
+    return { getPlayerOne, getPlayerTwo };
 
 })();
 
@@ -166,6 +180,18 @@ const game = (function () {
     let app = {
 
         start: function () {
+            let playerOne = '';
+            let playerTwo = '';
+
+            function getPlayers() {
+                playerOne = introContent.getPlayerOne();
+                playerTwo = introContent.getPlayerTwo();
+                mainContainer.removeEventListener('click', getPlayers);
+            }
+
+            let mainContainer = document.querySelector('.main-container');
+            mainContainer.addEventListener('click', getPlayers);
+            
             const tilesArr = Array.from(document.querySelectorAll('.tiles'));
             tilesArr.forEach(tile => {
                 tile.addEventListener('click', () => {
@@ -181,20 +207,33 @@ const game = (function () {
                         ++playCounter;
                     }
 
-                    // Checks first row for a win
-                    const rowOneTiles = 3;
-                    for (let i = 0; i < rowOneTiles; ++i) {
-                        // Check if horizontal tiles are matching
-                        // Check if tiles 1-3 match
-                        let _tile = tilesArr[i];
-                        if (_tile.innerHTML === 'null') {
-                            return;
-                        }
-                        else if(_tile) {
-                            
-                        }
+                    // Checks rows for a win
+                    // i is the row we are checking.
+                    const _numOfRows = 3;
+                    for (let i = 0; i < _numOfRows; ++i) {
                         
-                        // if (_tile.value)
+                        if (i === 0) {
+                            let _numOfTiles = 3;
+                            
+                            for (let j = 0; j < _numOfTiles; ++j) {
+                                
+                                let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                if (_currTile.innerHTML === '') {
+                                    console.log(`Row-${j} has no value!`);
+                                    return;
+                                }
+                                else if (_currTile.innerHTML === "X") {
+                                    console.log(`Row-${j} won a point!`);
+                                    playerOne.getPlayerOne;
+                                    
+                                }
+                                else if (_currTile.innerHTML === "O") {
+                                    console.log(`Row-${j} won a point!`);
+                                    playerTwo.pointWin;
+                                
+                                }
+                            }
+                        }
                     };
                 });
             });
