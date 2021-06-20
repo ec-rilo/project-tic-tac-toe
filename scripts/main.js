@@ -234,9 +234,12 @@ const game = (function () {
 
                             if (playerOne.getPoints() === 3) {
                                 console.log('PLAYER ONE WINS!');
+                                console.log(mainContainer);
+                                mainContainer.style.display = 'none';
                             }
                             else if (playerTwo.getPoints() === 3) {
                                 console.log('PLAYER TWO WINS!');
+                                mainContainer.style.display = 'none';
                             }
 
                             playerOne.resetPoints();
@@ -259,9 +262,11 @@ const game = (function () {
 
                             if (playerOne.getPoints() === 3) {
                                 console.log('PLAYER ONE WINS!');
+                                mainContainer.style.display = 'none';
                             }
                             else if (playerTwo.getPoints() === 3) {
                                 console.log('PLAYER TWO WINS!');
+                                mainContainer.style.display = 'none';
                             }
                             
                             playerOne.resetPoints();
@@ -284,9 +289,11 @@ const game = (function () {
 
                             if (playerOne.getPoints() === 3) {
                                 console.log('PLAYER ONE WINS!');
+                                mainContainer.style.display = 'none';
                             }
                             else if (playerTwo.getPoints() === 3) {
                                 console.log('PLAYER TWO WINS!');
+                                mainContainer.style.display = 'none';
                             }
                             
                             playerOne.resetPoints();
