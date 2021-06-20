@@ -3,19 +3,25 @@
 const Player = (name, type) => {
     let _points = 0;
 
-    let pointWin = point => {
-        _points += point;
-    }
+    let addPoint = () => {
+        _points += 1;
+    };
 
-    let pointLoss = point => {
-        _points -= point;
-    }
+    let losePoint = () => {
+        _points -= 1;
+    };
 
-    const win = () => {
+    let getPoints = () => _points;
+
+    let resetPoints = () => {
+        _points = 0;
+    };
+
+    const winGame = () => {
         console.log(`Congradulations! ${name} wins!`)
-    }
+    };
 
-    return { name, type, win, pointWin, pointLoss }
+    return { name, type, winGame, addPoint, losePoint, getPoints, resetPoints };
 };
 
 const form = (i) => {
@@ -213,26 +219,28 @@ const game = (function () {
                     for (let i = 0; i < _numOfRows; ++i) {
                         
                         if (i === 0) {
+
                             let _numOfTiles = 3;
-                            
                             for (let j = 0; j < _numOfTiles; ++j) {
                                 
                                 let _currTile = document.querySelector(`.tile-${j + 1}`);
-                                if (_currTile.innerHTML === '') {
-                                    console.log(`Row-${j} has no value!`);
-                                    return;
-                                }
-                                else if (_currTile.innerHTML === "X") {
-                                    console.log(`Row-${j} won a point!`);
-                                    playerOne.getPlayerOne;
-                                    
+                                if (_currTile.innerHTML === "X") {
+                                    playerOne.addPoint();
                                 }
                                 else if (_currTile.innerHTML === "O") {
-                                    console.log(`Row-${j} won a point!`);
-                                    playerTwo.pointWin;
-                                
+                                    playerTwo.addPoint();
                                 }
                             }
+
+                            if (playerOne.getPoints() === 3) {
+                                console.log('PLAYER ONE WINS!');
+                            }
+                            else if (playerTwo.getPoints() === 3) {
+                                console.log('PLAYER TWO WINS!');
+                            }
+                            
+                            playerOne.resetPoints();
+                            playerTwo.resetPoints();
                         }
                     };
                 });
