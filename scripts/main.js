@@ -238,6 +238,56 @@ const game = (function () {
                             else if (playerTwo.getPoints() === 3) {
                                 console.log('PLAYER TWO WINS!');
                             }
+
+                            playerOne.resetPoints();
+                            playerTwo.resetPoints();
+                        }
+
+                        if (i === 1) {
+
+                            let _numOfTiles = 6;
+                            for (let j = 3; j < _numOfTiles; ++j) {
+                                
+                                let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                if (_currTile.innerHTML === "X") {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTile.innerHTML === "O") {
+                                    playerTwo.addPoint();
+                                }
+                            }
+
+                            if (playerOne.getPoints() === 3) {
+                                console.log('PLAYER ONE WINS!');
+                            }
+                            else if (playerTwo.getPoints() === 3) {
+                                console.log('PLAYER TWO WINS!');
+                            }
+                            
+                            playerOne.resetPoints();
+                            playerTwo.resetPoints();
+                        }
+
+                        if (i === 2) {
+
+                            let _numOfTiles = 9;
+                            for (let j = 6; j < _numOfTiles; ++j) {
+                                
+                                let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                if (_currTile.innerHTML === "X") {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTile.innerHTML === "O") {
+                                    playerTwo.addPoint();
+                                }
+                            }
+
+                            if (playerOne.getPoints() === 3) {
+                                console.log('PLAYER ONE WINS!');
+                            }
+                            else if (playerTwo.getPoints() === 3) {
+                                console.log('PLAYER TWO WINS!');
+                            }
                             
                             playerOne.resetPoints();
                             playerTwo.resetPoints();
