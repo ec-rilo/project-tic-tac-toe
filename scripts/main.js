@@ -300,6 +300,91 @@ const game = (function () {
                             playerTwo.resetPoints();
                         }
                     };
+
+                    const numOfDiags = 2;
+                    for (let i = 0; i < numOfDiags; ++i) {
+
+                        if (i === 0) {
+                            const _numOfTiles = 9;
+                            for (let j = 0; j < _numOfTiles; ++j) {
+                                let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                let _currTileClassName = _currTile.className;
+                                
+                                if (_currTileClassName === 'tiles tile-1' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-1' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === "tiles tile-5" && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-5' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-9' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                } 
+                                else if(_currTileClassName === 'tiles tile-9' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                            }
+
+                            if (playerOne.getPoints() === 3) {
+                                console.log(`PLAYER 1 WINS!`);
+                                mainContainer.style.display = 'none';
+                            }
+                            else if (playerTwo.getPoints() === 3) {
+                                console.log('PLAYER 2 WINS');
+                                mainContainer.style.display = 'none';
+                            }
+                            
+                            playerOne.resetPoints();
+                            playerTwo.resetPoints();
+                        }
+
+                        if (i === 1) {
+                            const _numOfTiles = 9;
+                            for (let j = 0; j < _numOfTiles; ++j) {
+                                let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                let _currTileClassName = _currTile.className;
+                                
+                                if (_currTileClassName === 'tiles tile-3' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-3' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === "tiles tile-5" && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-5' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-7' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                } 
+                                else if(_currTileClassName === 'tiles tile-7' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                            }
+
+                            if (playerOne.getPoints() === 3) {
+                                console.log(`PLAYER 1 WINS!`);
+                                mainContainer.style.display = 'none';
+                            }
+                            else if (playerTwo.getPoints() === 3) {
+                                console.log('PLAYER 2 WINS');
+                                mainContainer.style.display = 'none';
+                            }
+                            
+                            playerOne.resetPoints();
+                            playerTwo.resetPoints();
+                        }
+                        
+
+                    }
+
                 });
             });
         }
