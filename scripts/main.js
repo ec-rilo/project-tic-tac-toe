@@ -170,6 +170,7 @@ const gameboard = (function () {
             const _numOfTiles = _tiles.length;
             for (let i = 0; i < _numOfTiles; ++i) {
                 _tiles[i].classList.add(`tile-${i + 1}`);
+                _tiles[i].setAttribute('data-tile-num', `${i + 1}`);
             }
         }, 
     };
@@ -186,6 +187,7 @@ const game = (function () {
     let app = {
 
         start: function () {
+
             let playerOne = '';
             let playerTwo = '';
 
@@ -301,6 +303,7 @@ const game = (function () {
                         }
                     };
 
+                    // Diagonal win checks
                     const numOfDiags = 2;
                     for (let i = 0; i < numOfDiags; ++i) {
 
@@ -308,6 +311,8 @@ const game = (function () {
                             const _numOfTiles = 9;
                             for (let j = 0; j < _numOfTiles; ++j) {
                                 let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                let _currTileNum = _currTile.dataset.tileNum;
+                                console.log(_currTileNum);
                                 let _currTileClassName = _currTile.className;
                                 
                                 if (_currTileClassName === 'tiles tile-1' && _currTile.innerHTML === 'X') {
@@ -381,10 +386,51 @@ const game = (function () {
                             playerOne.resetPoints();
                             playerTwo.resetPoints();
                         }
-                        
-
                     }
 
+                    // Column win checks
+                    const _numOfColumns = 3;
+                    for (let i = 0; i < _numOfColumns; ++i) {
+                        
+                        let _numOfTiles = 9;
+                        if (i === 0) {
+                            for (let j = 0; j < _numOfTiles; ++j) {
+                                let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                let _currTileClassName = _currTile.className;
+                                
+                                if (_currTileClassName === 'tiles tile-1' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-1' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === "tiles tile-4" && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-4' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-7' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                } 
+                                else if(_currTileClassName === 'tiles tile-7' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                            }
+
+                            if (playerOne.getPoints() === 3) {
+                                console.log(`PLAYER 1 WINS!`);
+                                mainContainer.style.display = 'none';
+                            }
+                            else if (playerTwo.getPoints() === 3) {
+                                console.log('PLAYER 2 WINS');
+                                mainContainer.style.display = 'none';
+                            }
+                            
+                            playerOne.resetPoints();
+                            playerTwo.resetPoints();
+                        }
+                    }
                 });
             });
         }
