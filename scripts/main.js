@@ -190,6 +190,7 @@ const game = (function () {
 
             let playerOne = '';
             let playerTwo = '';
+            let htmlBody = document.querySelector('body');
 
             function getPlayers() {
                 playerOne = introContent.getPlayerOne();
@@ -237,7 +238,21 @@ const game = (function () {
                             if (playerOne.getPoints() === 3) {
                                 console.log('PLAYER ONE WINS!');
                                 console.log(mainContainer);
+
                                 mainContainer.style.display = 'none';
+
+                                let winnerDisplay = document.createElement('div');
+                                winnerDisplay.classList.add('winner-display');
+                                winnerDisplay.innerHTML = 'Player one wins!';
+                                htmlBody.appendChild(winnerDisplay);
+
+                                let playAgainBtn = document.createElement('button');
+                                playAgainBtn.setAttribute('type', 'button');
+                                playAgainBtn.innerHTML = 'Play again?';
+                                playAgainBtn.classList.add('play-again-btn');
+                                htmlBody.appendChild(playAgainBtn);
+
+                                playAgainBtn.addEventListener('click', () => console.log('test'));
                             }
                             else if (playerTwo.getPoints() === 3) {
                                 console.log('PLAYER TWO WINS!');

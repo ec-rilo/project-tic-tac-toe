@@ -199,6 +199,28 @@ button:hover {
     justify-content: center;
 }
 
+.winner-display {
+    position: absolute;
+    color: var(--main-color-2);
+    text-shadow: 3px 3px var(--main-color-3);
+    font-size: 80px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+.play-again-btn {
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 50px;
+    font-size: 15px;
+}
+
 
 @media (max-width: 450px) {
     .banner {
