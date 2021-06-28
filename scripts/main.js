@@ -236,27 +236,10 @@ const game = (function () {
                             }
 
                             if (playerOne.getPoints() === 3) {
-                                console.log('PLAYER ONE WINS!');
-                                console.log(mainContainer);
-
-                                mainContainer.style.display = 'none';
-
-                                let winnerDisplay = document.createElement('div');
-                                winnerDisplay.classList.add('winner-display');
-                                winnerDisplay.innerHTML = 'Player one wins!';
-                                htmlBody.appendChild(winnerDisplay);
-
-                                let playAgainBtn = document.createElement('button');
-                                playAgainBtn.setAttribute('type', 'button');
-                                playAgainBtn.innerHTML = 'Play again?';
-                                playAgainBtn.classList.add('play-again-btn');
-                                htmlBody.appendChild(playAgainBtn);
-
-                                playAgainBtn.addEventListener('click', () => console.log('test'));
+                                restartGame(playerOne);
                             }
                             else if (playerTwo.getPoints() === 3) {
-                                console.log('PLAYER TWO WINS!');
-                                mainContainer.style.display = 'none';
+                                restartGame(playerTwo);
                             }
 
                             playerOne.resetPoints();
@@ -278,12 +261,10 @@ const game = (function () {
                             }
 
                             if (playerOne.getPoints() === 3) {
-                                console.log('PLAYER ONE WINS!');
-                                mainContainer.style.display = 'none';
+                                restartGame(playerOne);
                             }
                             else if (playerTwo.getPoints() === 3) {
-                                console.log('PLAYER TWO WINS!');
-                                mainContainer.style.display = 'none';
+                                restartGame(playerTwo)
                             }
                             
                             playerOne.resetPoints();
@@ -305,12 +286,10 @@ const game = (function () {
                             }
 
                             if (playerOne.getPoints() === 3) {
-                                console.log('PLAYER ONE WINS!');
-                                mainContainer.style.display = 'none';
+                                restartGame(playerOne);
                             }
                             else if (playerTwo.getPoints() === 3) {
-                                console.log('PLAYER TWO WINS!');
-                                mainContainer.style.display = 'none';
+                                restartGame(playerTwo);
                             }
                             
                             playerOne.resetPoints();
@@ -351,12 +330,10 @@ const game = (function () {
                             }
 
                             if (playerOne.getPoints() === 3) {
-                                console.log(`PLAYER 1 WINS!`);
-                                mainContainer.style.display = 'none';
+                                restartGame(playerOne);
                             }
                             else if (playerTwo.getPoints() === 3) {
-                                console.log('PLAYER 2 WINS');
-                                mainContainer.style.display = 'none';
+                                restartGame(playerTwo);
                             }
                             
                             playerOne.resetPoints();
@@ -390,12 +367,10 @@ const game = (function () {
                             }
 
                             if (playerOne.getPoints() === 3) {
-                                console.log(`PLAYER 1 WINS!`);
-                                mainContainer.style.display = 'none';
+                                restartGame(playerOne);
                             }
                             else if (playerTwo.getPoints() === 3) {
-                                console.log('PLAYER 2 WINS');
-                                mainContainer.style.display = 'none';
+                                restartGame(playerTwo);
                             }
                             
                             playerOne.resetPoints();
@@ -434,12 +409,10 @@ const game = (function () {
                             }
 
                             if (playerOne.getPoints() === 3) {
-                                console.log(`PLAYER 1 WINS!`);
-                                mainContainer.style.display = 'none';
+                                restartGame(playerOne);
                             }
                             else if (playerTwo.getPoints() === 3) {
-                                console.log('PLAYER 2 WINS');
-                                mainContainer.style.display = 'none';
+                                restartGame(playerTwo);
                             }
                             
                             playerOne.resetPoints();
@@ -448,6 +421,38 @@ const game = (function () {
                     }
                 });
             });
+
+            function restartGame(player) {
+                mainContainer.style.display = 'none';
+
+                let winnerDisplay = document.createElement('div');
+                winnerDisplay.classList.add('winner-display');
+                winnerDisplay.innerHTML = `${player.name} wins!`;
+                htmlBody.appendChild(winnerDisplay);
+        
+                let playAgainBtn = document.createElement('button');
+                playAgainBtn.setAttribute('type', 'button');
+                playAgainBtn.innerHTML = 'Play again?';
+                playAgainBtn.classList.add('play-again-btn');
+                htmlBody.appendChild(playAgainBtn);
+        
+                playAgainBtn.addEventListener('click', function test() {
+                    winnerDisplay.style.display = 'none';
+                    playAgainBtn.style.display = 'none';
+                    mainContainer.style.display = 'block';
+        
+                    const tilesArr = Array.from(document.querySelectorAll('.tiles'));
+                    tilesArr.forEach(tile => {
+                        tile.innerHTML = '';
+                    });
+                    gameboardArr = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+                    playCounter = 0;
+        
+                    
+                    playerOne.resetPoints();
+                    playerTwo.resetPoints();
+                });
+            }
         }
     }
 
