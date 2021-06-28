@@ -200,6 +200,9 @@ const game = (function () {
 
             let mainContainer = document.querySelector('.main-container');
             mainContainer.addEventListener('click', getPlayers);
+
+            let restartBtn = document.querySelector('.restart-btn');
+            restartBtn.addEventListener('click', () => completeRestart());
             
             const tilesArr = Array.from(document.querySelectorAll('.tiles'));
             tilesArr.forEach(tile => {
@@ -306,7 +309,6 @@ const game = (function () {
                             for (let j = 0; j < _numOfTiles; ++j) {
                                 let _currTile = document.querySelector(`.tile-${j + 1}`);
                                 let _currTileNum = _currTile.dataset.tileNum;
-                                console.log(_currTileNum);
                                 let _currTileClassName = _currTile.className;
                                 
                                 if (_currTileClassName === 'tiles tile-1' && _currTile.innerHTML === 'X') {
@@ -522,6 +524,18 @@ const game = (function () {
                     playerOne.resetPoints();
                     playerTwo.resetPoints();
                 });
+            }
+            
+            function completeRestart() {
+                const tilesArr = Array.from(document.querySelectorAll('.tiles'));
+                tilesArr.forEach(tile => {
+                    tile.innerHTML = '';
+                });
+                gameboardArr = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+                playCounter = 0;
+                    
+                playerOne.resetPoints();
+                playerTwo.resetPoints();
             }
         }
     }
