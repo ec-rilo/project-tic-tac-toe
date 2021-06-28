@@ -418,6 +418,76 @@ const game = (function () {
                             playerOne.resetPoints();
                             playerTwo.resetPoints();
                         }
+                        if (i == 1) {
+                            for (let j = 0; j < _numOfTiles; ++j) {
+                                let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                let _currTileClassName = _currTile.className;
+                                
+                                if (_currTileClassName === 'tiles tile-2' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-2' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === "tiles tile-5" && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-5' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-8' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                } 
+                                else if(_currTileClassName === 'tiles tile-8' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                            }
+
+                            if (playerOne.getPoints() === 3) {
+                                restartGame(playerOne);
+                            }
+                            else if (playerTwo.getPoints() === 3) {
+                                restartGame(playerTwo);
+                            }
+
+                            playerOne.resetPoints();
+                            playerTwo.resetPoints();
+                        }
+                        if (i == 1) {
+                            for (let j = 0; j < _numOfTiles; ++j) {
+                                let _currTile = document.querySelector(`.tile-${j + 1}`);
+                                let _currTileClassName = _currTile.className;
+                                
+                                if (_currTileClassName === 'tiles tile-3' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-3' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === "tiles tile-6" && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-6' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                                else if (_currTileClassName === 'tiles tile-9' && _currTile.innerHTML === 'X') {
+                                    playerOne.addPoint();
+                                } 
+                                else if(_currTileClassName === 'tiles tile-9' && _currTile.innerHTML === 'O') {
+                                    playerTwo.addPoint();
+                                }
+                            }
+
+                            if (playerOne.getPoints() === 3) {
+                                restartGame(playerOne);
+                            }
+                            else if (playerTwo.getPoints() === 3) {
+                                restartGame(playerTwo);
+                            }
+
+                            playerOne.resetPoints();
+                            playerTwo.resetPoints();
+                        }
                     }
                 });
             });
