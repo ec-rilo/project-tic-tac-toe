@@ -7,7 +7,10 @@
 
 ## About
 <p>
-  The completed project will have a welcome screen allowing the user to start the game and input there information.
-  Buttons to restart the game and start the game will be present at the time of play. Being able to play against a computer
-  will also be implemented. A winner display with a ability to choose to rematch will be present at games end.
+  A simple game of tic-tac-toe with data collection implemented
+</p>
+
+## The Process, eating a whale one piece at a time
+<p>
+    This program taught me how to plan and execute a problem. Each step was thought out before carrying out to code. It was my first large project using the module pattern and factory functions. 
 </p>
