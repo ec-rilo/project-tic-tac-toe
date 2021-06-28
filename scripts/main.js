@@ -219,6 +219,20 @@ const game = (function () {
                         ++playCounter;
                     }
 
+                    const totalTiles = 9;
+                    let tieChecker = 0;
+                    for (let i = 0; i < totalTiles; ++i) {
+                        let _currTile = document.querySelector(`.tile-${i + 1}`);
+                        if (_currTile.innerHTML !== '') {
+                            ++tieChecker;
+                            console.log(tieChecker);
+                        }
+                        if (tieChecker === 9) {
+                            displayTie();
+                        }
+                    }
+                    tieChecker = 0;
+
                     // Checks rows for a win
                     // i is the row we are checking.
                     const _numOfRows = 3;
@@ -536,6 +550,38 @@ const game = (function () {
                     
                 playerOne.resetPoints();
                 playerTwo.resetPoints();
+            }
+
+            function displayTie() {
+                mainContainer.style.display = 'none';
+
+                const _tieDisplay = document.createElement('div');
+                _tieDisplay.classList.add('tie-display');
+                _tieDisplay.innerHTML = 'Tie!';
+                htmlBody.appendChild(_tieDisplay);
+
+                let playAgainBtn = document.createElement('button');
+                playAgainBtn.setAttribute('type', 'button');
+                playAgainBtn.innerHTML = 'Play again?';
+                playAgainBtn.classList.add('play-again-btn');
+                htmlBody.appendChild(playAgainBtn);
+
+                playAgainBtn.addEventListener('click', function test() {
+                    _tieDisplay.style.display = 'none';
+                    playAgainBtn.style.display = 'none';
+                    mainContainer.style.display = 'block';
+        
+                    const tilesArr = Array.from(document.querySelectorAll('.tiles'));
+                    tilesArr.forEach(tile => {
+                        tile.innerHTML = '';
+                    });
+                    gameboardArr = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+                    playCounter = 0;
+        
+                    
+                    playerOne.resetPoints();
+                    playerTwo.resetPoints();
+                });
             }
         }
     }
